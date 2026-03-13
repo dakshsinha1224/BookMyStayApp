@@ -30,5 +30,14 @@ public class Main {
         
         System.out.println("\nGuest initiates a room search...");
         searchService.searchAvailableRooms(catalog);
+        
+        // UC5: Booking Request
+        BookingService bookingService = new BookingService();
+        System.out.println("\n--- Processing Booking Requests (FIFO Queue) ---");
+        bookingService.submitRequest(new Reservation("Alice", singleRoomType.getRoomType()));
+        bookingService.submitRequest(new Reservation("Bob", suiteRoomType.getRoomType()));
+        bookingService.submitRequest(new Reservation("Charlie", singleRoomType.getRoomType()));
+        bookingService.submitRequest(new Reservation("Diana", doubleRoomType.getRoomType()));
+        System.out.println("Total requests pending in queue: " + bookingService.getQueueSize());
     }
 }
