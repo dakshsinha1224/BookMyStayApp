@@ -15,19 +15,18 @@ public class Main {
         System.out.println("Welcome to the Hotel Booking System v1.0");
         System.out.println("Initializing system components...\n");
 
-        // UC2: Basic Room Types & Static Availability
+        // UC2: Basic Room Types
         Room singleRoomType = new SingleRoom();
         Room doubleRoomType = new DoubleRoom();
         Room suiteRoomType = new SuiteRoom();
 
-        // Hardcoded static availability (Scattered State)
-        int singleRoomAvailability = 5;
-        int doubleRoomAvailability = 3;
-        int suiteRoomAvailability = 1;
-
-        System.out.println("--- Current Room Availability ---");
-        System.out.println(singleRoomType + " | Available: " + singleRoomAvailability);
-        System.out.println(doubleRoomType + " | Available: " + doubleRoomAvailability);
-        System.out.println(suiteRoomType + " | Available: " + suiteRoomAvailability);
+        // UC3: Centralized Inventory
+        RoomInventory inventory = new RoomInventory();
+        System.out.println("--- System Initialization Complete ---");
+        System.out.println(singleRoomType.getRoomType() + " base availability: " + inventory.getAvailableRooms(singleRoomType.getRoomType()));
+        System.out.println(doubleRoomType.getRoomType() + " base availability: " + inventory.getAvailableRooms(doubleRoomType.getRoomType()));
+        System.out.println(suiteRoomType.getRoomType() + " base availability: " + inventory.getAvailableRooms(suiteRoomType.getRoomType()));
+        
+        inventory.displayInventory();
     }
 }
