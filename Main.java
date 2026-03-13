@@ -31,13 +31,20 @@ public class Main {
         System.out.println("\nGuest initiates a room search...");
         searchService.searchAvailableRooms(catalog);
         
-        // UC5: Booking Request
-        BookingService bookingService = new BookingService();
-        System.out.println("\n--- Processing Booking Requests (FIFO Queue) ---");
+        // UC5 & UC6: Booking Request and Room Allocation
+        BookingService bookingService = new BookingService(inventory);
+        System.out.println("\n--- Receiving Booking Requests (FIFO Queue) ---");
         bookingService.submitRequest(new Reservation("Alice", singleRoomType.getRoomType()));
         bookingService.submitRequest(new Reservation("Bob", suiteRoomType.getRoomType()));
         bookingService.submitRequest(new Reservation("Charlie", singleRoomType.getRoomType()));
         bookingService.submitRequest(new Reservation("Diana", doubleRoomType.getRoomType()));
+        bookingService.submitRequest(new Reservation("Eve", suiteRoomType.getRoomType())); // Should fail, only 1 suite available
         System.out.println("Total requests pending in queue: " + bookingService.getQueueSize());
+        
+        // UC6: Process Phase
+        bookingService.processAllocations();
+        
+        bookingService.displayAllocations();
+        inventory.displayInventory();
     }
 }
