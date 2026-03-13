@@ -23,10 +23,12 @@ public class Main {
         // UC3: Centralized Inventory
         RoomInventory inventory = new RoomInventory();
         System.out.println("--- System Initialization Complete ---");
-        System.out.println(singleRoomType.getRoomType() + " base availability: " + inventory.getAvailableRooms(singleRoomType.getRoomType()));
-        System.out.println(doubleRoomType.getRoomType() + " base availability: " + inventory.getAvailableRooms(doubleRoomType.getRoomType()));
-        System.out.println(suiteRoomType.getRoomType() + " base availability: " + inventory.getAvailableRooms(suiteRoomType.getRoomType()));
         
-        inventory.displayInventory();
+        // UC4: Room Search
+        SearchService searchService = new SearchService(inventory);
+        java.util.List<Room> catalog = java.util.Arrays.asList(singleRoomType, doubleRoomType, suiteRoomType);
+        
+        System.out.println("\nGuest initiates a room search...");
+        searchService.searchAvailableRooms(catalog);
     }
 }
