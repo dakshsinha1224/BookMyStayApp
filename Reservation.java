@@ -1,7 +1,8 @@
 /**
  * Represents a guest's intent to book a specific room type.
  */
-public class Reservation {
+public class Reservation implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
     private String guestName;
     private String requestedRoomType;
 

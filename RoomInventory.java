@@ -4,7 +4,8 @@ import java.util.Map;
 /**
  * Manages the total availability of different room types centrally.
  */
-public class RoomInventory {
+public class RoomInventory implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
     private Map<String, Integer> availabilityMap;
 
     public RoomInventory() {
